@@ -1,0 +1,12 @@
+/*#id_news{
+    border: 5px solid gray;
+    width: 40%;
+    height: 30%;
+  }
+
+#id_business{
+    border: 5px solid gray;
+    width: 40%;
+    height: 30%;
+  }*/
+/*<!-- {% for each_url in {{ all_semeso_dict['each_category'] }} %} -->*/

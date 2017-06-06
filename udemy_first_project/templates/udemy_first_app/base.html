@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'semeso.css' %}" />
+
+    <title>SEndMESomething!</title>
+    <style media="screen">
+    .boxy{
+      /*background: #b3ddff;*/
+      background: #FFFFFF;
+      color:blue;
+      /*font-family:arial;*/
+      border: 2px solid black;
+    }
+    .row-m-t{
+     margin-top : 20px;
+     margin-bottom: 30px;
+    }
+    h2{
+      border: 1px solid black;
+      background-color: #f2f2f2
+    }
+    a:visited {
+    color: red;
+    }
+  </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <a class="btn btn-primary pull-right" href={% url 'udemy_first_app:semeso_news' %} role="button">semeso</a>
+        <h1>Welcome to semeso!</h1>
+      </div>
+
+    </nav>
+    <div class="container">
+      <div class="jumbotron">
+        <p> <strong>SEndMeSomething</strong> - One click on the semeso button will show you whats happening around the world! </p>
+      </div>
+
+    </div>
+    <div class="container">
+      {% block body_block %}
+
+      {% endblock %}
+
+    </div>
+
+
+  </body>
+</html>
