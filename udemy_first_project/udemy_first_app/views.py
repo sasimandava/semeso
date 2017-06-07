@@ -3,6 +3,7 @@ import requests
 from collections import OrderedDict
 import logging
 import random
+import time
 """
 semeso=send me something.
 When a user clicks on "Semeso" button on home page,
@@ -16,7 +17,7 @@ one api is selected randomly and urls are displayed.
 log_level = logging.DEBUG
 format = '%(asctime)s %(levelname)s - %(module)8s - line:%(lineno)d - %(message)s'
 logging.basicConfig(filename='semeso.log',
-                    filemode='w',  # use 'a' if you want to preserve the old log file
+                    filemode='w',
                     format=format,
                     level=log_level)
 
@@ -72,14 +73,17 @@ def semeso_news(request):
         try:
             all_semeso_dict = OrderedDict()
             for category,api in all_apis_dict.items():
+                start_time = time.time()
                 response = requests.get(api)
                 js = response.json()
                 all_semeso_dict[category] = [[article['url'], article['urlToImage']] for article in js['articles']]
+            end_time = time.time()
+            logging.debug("This is what a user gets: {}".format(all_semeso_dict))
+            logging.debug("Time taken to obtain URLs: {}".format(start_time - end_time))
+            return render(request, 'udemy_first_app/semeso.html', {'all_semeso_dict':all_semeso_dict})
         except requests.exceptions.ConnectionError:
             all_semeso_dict = {'Error':'Connection Error'}
             return render(request, 'udemy_first_app/semeso_error.html', {'all_semeso_dict':all_semeso_dict})
-        logging.debug("This is what a user gets: {}".format(all_semeso_dict))
-        return render(request, 'udemy_first_app/semeso.html', {'all_semeso_dict':all_semeso_dict})
     else:
         context_dict = {'Error':'Connection Error'}
         return render(request, 'udemy_first_app/semeso_error.html', {'all_semeso_dict':context_dict})
