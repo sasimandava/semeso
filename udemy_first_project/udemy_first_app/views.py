@@ -85,5 +85,5 @@ def semeso_news(request):
             all_semeso_dict = {'Error':'Connection Error'}
             return render(request, 'udemy_first_app/semeso_error.html', {'all_semeso_dict':all_semeso_dict})
     else:
-        context_dict = {'Error':'Connection Error'}
-        return render(request, 'udemy_first_app/semeso_error.html', {'all_semeso_dict':context_dict})
+        all_semeso_dict = {'Error':'Connection Error'}
+        return render(request, 'udemy_first_app/semeso_error.html', {'all_semeso_dict':all_semeso_dict})
